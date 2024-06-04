@@ -1,4 +1,4 @@
-# Team Waterloo 2024 Software Tool
+# Waterloo iGEM 2024 - Math & Modelling Subteam 
 
 If your team competes in the [**Software & AI** village](https://competition.igem.org/participation/villages) or wants to
 apply for the [**Best Software Tool** prize](https://competition.igem.org/judging/awards), you **MUST** host all the
@@ -9,6 +9,17 @@ this software tool. You will be able to keep working on your software after the 
 > If your team does not have any software tool, you can totally ignore this repository. If left unchanged, this
 repository will be automatically deleted by the end of the season.
 
+### MATLAB Setup (WIP)
+
+Ensure you have the following MATLAB toolboxes installed:
+- Optimization Toolbox
+- Statistics and Machine Learning Toolbox
+- Bioinformatics Toolbox
+- Simulink
+- Control System Toolbox (if applicable)
+- Symbolic Math Toolbox (if applicable)
+
+You can install them using the MATLAB Add-On Explorer.
 
 
 ## Description
