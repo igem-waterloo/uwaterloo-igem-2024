@@ -1,0 +1,16 @@
+name: MATLAB Test
+
+on: [pull_request]
+
+jobs:
+  matlab-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up MATLAB
+      uses: matlab-actions/setup-matlab@v1
+
+    - name: Run MATLAB tests
+      run: |
+        matlab -batch "run('tests/runTests.m');"

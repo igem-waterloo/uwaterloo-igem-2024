@@ -1,3 +1,4 @@
+# Everyone
 numpy
 pandas
 scipy
@@ -6,4 +7,18 @@ seaborn
 jupytr
 sympy
 biopython
-networkx
+
+# Inside Cattle
+cobra
+
+# Outside Cattle
+scikit-learn
+
+# Methanogenesis
+tellurium
+lmfit
+SAlib
+
+# Algae 'n' Enzymes
+pymol
+nglview
