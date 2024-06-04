@@ -1,24 +1,23 @@
-# Everyone
-numpy
-pandas
-scipy
-matplotlib
-seaborn
-jupytr
-sympy
-biopython
+# EVERYONE
+numpy # numerical operations
+pandas # scientific computing
+scipy # data manipulation + analysis
+matplotlib # plotting
+seaborn # statistical data visualization
+sympy # symbolic math
+biopython # biological computation
 
-# Inside Cattle
-cobra
+# INSIDE CATTLE
+cobra # for FBA 
 
-# Outside Cattle
+# OUTSIDE CATTLE
 scikit-learn
 
-# Methanogenesis
-tellurium
-lmfit
-SAlib
+# METHANOGENESIS
+tellurium # for reaction kinetics modelling
+lmfit # for curve fitting + optimization
+SAlib # for sensitivity analysis 
 
-# Algae 'n' Enzymes
-pymol
-nglview
+# ALGAE 'N' ENZYMES
+pymol # molecular visualization tool
+nglview # another one 
