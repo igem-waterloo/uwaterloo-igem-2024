@@ -19,5 +19,4 @@ lmfit # for curve fitting + optimization
 SAlib # for sensitivity analysis 
 
 # ALGAE 'N' ENZYMES
-pymol # molecular visualization tool
 nglview # another one 
