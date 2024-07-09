@@ -1,6 +1,6 @@
-name: MATLAB Test
+name: MATLAB Testing
 
-on: [pull_request]
+on: push
 
 jobs:
   matlab-test:
