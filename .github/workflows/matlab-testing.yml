@@ -1,6 +1,12 @@
 name: MATLAB Testing
 
-on: push
+on: 
+  pull_request:
+    types: 
+      - opened
+      - synchronize
+      - reopened
+      - closed
 
 jobs:
   matlab-test:
