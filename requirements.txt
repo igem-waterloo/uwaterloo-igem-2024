@@ -19,4 +19,5 @@ lmfit # for curve fitting + optimization
 SAlib # for sensitivity analysis 
 
 # ALGAE 'N' ENZYMES
-nglview # another one 
+
+# PROTEIN MODELLING
