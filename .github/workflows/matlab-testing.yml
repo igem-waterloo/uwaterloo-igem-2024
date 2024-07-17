@@ -19,4 +19,4 @@ jobs:
 
     - name: Run MATLAB tests
       run: |
-        matlab -batch "run('/runTests.m');"
+        matlab -batch "run('../tests/runTests.m');"
