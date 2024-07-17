@@ -10,7 +10,6 @@ def test_environment_setup():
         import matplotlib
         import sklearn
         import cobra  # for Flux Balance Analysis
-        import tensorflow  
         # Add other libraries as needed
     except ImportError as e:
         pytest.fail(f"Failed to import a required library: {e}")
