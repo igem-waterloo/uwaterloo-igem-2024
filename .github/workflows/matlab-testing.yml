@@ -18,9 +18,9 @@ jobs:
 
       - name: Install MATLAB Toolboxes
         run: |
-          matlab -batch "if ~any(contains({ver.Name}, 'Statistics and Machine Learning Toolbox')), error('Missing Statistics and Machine Learning Toolbox'); end"
-          matlab -batch "if ~any(contains({ver.Name}, 'Optimization Toolbox')), error('Missing Optimization Toolbox'); end"
-          matlab -batch "if ~any(contains({ver.Name}, 'Bioinformatics Toolbox')), error('Missing Bioinformatics Toolbox'); end"
+          matlab -batch "if ~any(strcmp({ver.Name}, 'Statistics and Machine Learning Toolbox')), error('Missing Statistics and Machine Learning Toolbox'); end"
+          matlab -batch "if ~any(strcmp({ver.Name}, 'Optimization Toolbox')), error('Missing Optimization Toolbox'); end"
+          matlab -batch "if ~any(strcmp({ver.Name}, 'Bioinformatics Toolbox')), error('Missing Bioinformatics Toolbox'); end"
 
       - name: Run MATLAB tests
         run: |
