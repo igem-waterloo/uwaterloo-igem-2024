@@ -39,7 +39,7 @@ jobs:
         env: 
           DEFAULT_BRANCH: main
 
-      - name: Run tests
+      - name: Run Python tests
         run: |
           pip install pytest
-          pytest
+          pytest tests/test_python.py
