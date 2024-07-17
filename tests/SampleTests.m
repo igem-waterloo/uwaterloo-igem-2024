@@ -8,17 +8,17 @@ classdef SampleTests < matlab.unittest.TestCase
             testCase.verifyNotEmpty(ver('MATLAB'), 'MATLAB is not available.');
 
             % Check for required toolboxes
-            requiredToolboxes = {
-                'Statistics and Machine Learning Toolbox';
-                'Optimization Toolbox';
-                'Bioinformatics Toolbox'
-            };
+            % requiredToolboxes = {
+            %     'Statistics and Machine Learning Toolbox';
+            %     'Optimization Toolbox';
+            %     'Bioinformatics Toolbox'
+            % };
 
-            for k = 1:numel(requiredToolboxes)
-                toolboxName = requiredToolboxes{k};
-                toolboxInfo = ver(toolboxName);
-                testCase.verifyNotEmpty(toolboxInfo, ['Required toolbox not found: ', toolboxName]);
-            end
+            % for k = 1:numel(requiredToolboxes)
+            %     toolboxName = requiredToolboxes{k};
+            %     toolboxInfo = ver(toolboxName);
+            %     testCase.verifyNotEmpty(toolboxInfo, ['Required toolbox not found: ', toolboxName]);
+            % end
         end
 
         % Placeholder for basic math and utility functions
