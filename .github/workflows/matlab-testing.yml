@@ -18,7 +18,7 @@ jobs:
 
       - name: Install MATLAB Toolboxes
         run: |
-          matlab -batch "toolboxes = {'Statistics and Machine Learning Toolbox', 'Optimization Toolbox', 'Bioinformatics Toolbox'}; installedToolboxes = {ver.Name}; missingToolboxes = setdiff(toolboxes, installedToolboxes); if ~isempty(missingToolboxes), error('Missing toolboxes: %s', strjoin(missingToolboxes, ', ')); end"
+          matlab -batch "toolboxes = {'Statistics and Machine Learning Toolbox', 'Optimization Toolbox', 'Bioinformatics Toolbox'}; installedToolboxes = cellfun(@(x) x.Name, ver, 'UniformOutput', false); missingToolboxes = setdiff(toolboxes, installedToolboxes); if ~isempty(missingToolboxes), error('Missing toolboxes: %s', strjoin(missingToolboxes, ', ')); end"
           
       - name: Run MATLAB tests
         run: |
