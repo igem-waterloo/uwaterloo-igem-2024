@@ -1,0 +1,11 @@
+# Code owners for each model, as per Software Tools workshop doc
+
+modelsinside-cattle/ @sydneysherwood
+
+models/outside-cattle/ @elysia-wang
+
+models/methanogenesis/ @rebekahx23
+
+models/algae-n-enzymes/ @DavidM2004
+
+models/protein-modelling/ @sydney-sherwood
