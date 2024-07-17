@@ -1,18 +1,23 @@
-% tests/test_matlab.m
+% SampleTests.m
 classdef SampleTests < matlab.unittest.TestCase
 
     % Placeholder for environment setup tests
     methods (Test)
         function testEnvironmentSetup(testCase)
-            try
-                % Test for presence of common toolboxes and functions
-                assert(~isempty(ver('MATLAB')));
-                assert(~isempty(ver('Statistics and Machine Learning Toolbox')));
-                assert(~isempty(ver('Optimization Toolbox')));
-                assert(~isempty(ver('Bioinformatics Toolbox')));
-                % Add other toolbox checks as needed
-            catch e
-                testCase.verifyFail(sprintf('Failed to verify a required toolbox: %s', e.message));
+            % Check for MATLAB version
+            testCase.verifyNotEmpty(ver('MATLAB'), 'MATLAB is not available.');
+
+            % Check for required toolboxes
+            requiredToolboxes = {
+                'Statistics and Machine Learning Toolbox';
+                'Optimization Toolbox';
+                'Bioinformatics Toolbox'
+            };
+
+            for k = 1:numel(requiredToolboxes)
+                toolboxName = requiredToolboxes{k};
+                toolboxInfo = ver(toolboxName);
+                testCase.verifyNotEmpty(toolboxInfo, ['Required toolbox not found: ', toolboxName]);
             end
         end
 

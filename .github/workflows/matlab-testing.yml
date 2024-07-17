@@ -1,25 +1,27 @@
-name: MATLAB Testing
+name: MATLAB Tests
 
-on: 
-  push:
-    branches:
-      - main
-  pull_request:
-    types: 
-      - opened
-      - synchronize
-      - reopened
-      - closed
+on: [push, pull_request]
 
 jobs:
-  matlab-test:
+  matlab:
+    name: Run MATLAB Tests
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up MATLAB
-      uses: matlab-actions/setup-matlab@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Run MATLAB tests
-      run: |
-        matlab -batch "cd('tests'); results = runtests('SampleTests.m'); assert(all([results.Passed]), 'Some tests failed');"
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          release: 'R2024a'  # Specify the MATLAB release you are using
+
+      - name: Install MATLAB Toolboxes
+        run: |
+          matlab -batch "if ~any(contains({ver.Name}, 'Statistics and Machine Learning Toolbox')), error('Missing Statistics and Machine Learning Toolbox'); end"
+          matlab -batch "if ~any(contains({ver.Name}, 'Optimization Toolbox')), error('Missing Optimization Toolbox'); end"
+          matlab -batch "if ~any(contains({ver.Name}, 'Bioinformatics Toolbox')), error('Missing Bioinformatics Toolbox'); end"
+
+      - name: Run MATLAB tests
+        run: |
+          matlab -batch "cd('tests'); results = runtests('SampleTests.m'); assert(all([results.Passed]), 'Some tests failed');"
