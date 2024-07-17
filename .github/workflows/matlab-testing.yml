@@ -22,4 +22,4 @@ jobs:
 
     - name: Run MATLAB tests
       run: |
-        matlab -batch "cd('tests'); test_matlab"
+        matlab -batch "cd('tests'); results = runtests('test_matlab.m'); assert(all([results.Passed]), 'Some tests failed');""
