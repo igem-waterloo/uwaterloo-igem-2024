@@ -11,9 +11,10 @@ from d3flux.core.flux_layouts import render_model
 from jinja2 import Template
 
 curdir = os.getcwd()
+print(curdir);
 
 # load in SBML file for methanobrevibacter ruminantium M1 - to run, download this from AGORA
-m_ruminantium = cobra.io.read_sbml_model(f"{curdir}/Desktop/M_Methanobrevibacter_ruminantium_M1__44____32__AGORA__32__version__32__1__46__03.sbml")
+m_ruminantium = cobra.io.read_sbml_model(f"{curdir}/../data/M_Methanobrevibacter_ruminantium_M1__44____32__AGORA__32__version__32__1__46__03.sbml")
 
 # by default, the network is set to optimize biomass production. set the objective function to also minimize the methane production and biomass production.
 m_ruminantium.reactions.get_by_id('EX_ch4(e)').objective_coefficient = 1.0
@@ -47,6 +48,11 @@ from cobra.flux_analysis import pfba
 pfba = pfba(m_ruminantium)
 
 html = d3f.flux_map(m_ruminantium, custom_css=css,figsize =(520, 660), default_flux_width=2.5, fontsize=14)
-html.save("m_ruminantium_flux.svg")
+
+with open("../assets/m_ruminantium_flux.html", "w") as file:
+    file.write(str(html))
+
+# html.save("m_ruminantium_flux.svg")
+print(html)
 
 # im gna hold off on the rest of the constraint stuff im working on rn cause haha it's bad but this should print the barebones network;)
