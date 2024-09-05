@@ -49,13 +49,34 @@ k_s_H2=5.84e-6;
 k_m_H2=13.93;
 Y_H2=0.0016;
 
+%Symbolic variables for ode solving
+syms z_NDF;
+syms z_NSC;
+syms z_pro;
+syms s_su;
+syms s_aa;
+syms s_H2;
+syms s_ac;
+syms s_bu;
+syms s_pr;
+syms s_IN;
+syms s_IC;
+syms s_CH4;
+syms x_su;
+syms x_aa;
+syms x_H2;
+
 % Made up values just so the thing compiles (need actual values for these)
-z_NDF_0 = 1;
-z_NSC_0 = 2;
-z_pro_0 = 3;
-s_su_0 = 4;
-s_aa_0 = 5;
-s_H2_0 = 6;
+% These are supposed to be the outputs of the model as a fn of time
+% Comment/delete this out after
+% subs (z_NDF,1);
+% subs (z_NSC,2);
+% subs (z_pro,3);
+% subs (s_su,4);
+% subs (s_aa,5);
+% subs (s_H2,6);
+% subs (s_IN,0);
+% subs (x_su,0);
 
 % Equations from paper
 P_NDF = k_hyd_NDF * z_NDF_0;
@@ -79,9 +100,9 @@ Y_pr_aa = (1 - Y_pr_su) * sigma_pr_aa;
 Y_IN_aa = 1 - Y_aa;
 Y_IC_aa = (1 - Y_IC_su) * sigma_IC2_aa;
 Y_IN = Y_IN_su;
+I_IN = s_IN / (s_IN + k_s_IN);
 
 % Petersen Matrix
-I_IN = inline (s_IN / (s_IN + k_s_IN), s_IN);
 pm = [-1, 0, 0, 1/w_su, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
       0, -1, 0, 1/w_su, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
       0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
@@ -90,22 +111,38 @@ pm = [-1, 0, 0, 1/w_su, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
       0, 0, 0, 0, 0, -1, 0, 0, 0, Y_IN_H2, Y_IC_H2, Y_CH4_H2, 0, 0, Y_H2;
       0, f_ch_x*w_mb, f_pro_x*w_mb, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0;
       0, f_ch_x*w_mb, f_pro_x*w_mb, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0;
-      0, f_ch_x*w_mb, f_pro_x*w_mb, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1];
+      0, f_ch_x*w_mb, f_pro_x*w_mb, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1]
 
 % Rate vector
 ratevector = [k_hyd_NDF * z_NDF;
               k_hyd_NSC * z_NSC;
               k_hyd_pro * z_pro;
-              k_m_su * (s_su_0 / (k_s_su + s_su_0)) * x_su * I_IN();
-              k_m_aa * (s_aa_0 / (k_s_aa + s_aa_0)) * x_aa;
-              k_m_H2 * (s_H2_0 / (k_s_H2 + s_H2_0)) * x_H2 * I_IN;
+              k_m_su * (s_su / (k_s_su + s_su)) * x_su * I_IN;
+              k_m_aa * (s_aa / (k_s_aa + s_aa)) * x_aa;
+              k_m_H2 * (s_H2 / (k_s_H2 + s_H2)) * x_H2 * I_IN;
               k_d * x_su;
               k_d * x_aa;
               k_d * x_H2];
 
 % Initial condition vector
-y0 = [z_NDF_0, z_NSC_0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]';
+y0 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]';
 
-odevector = @(t, y) pm' * ratevector;
+RHS = pm' * ratevector
+LHS = [z_NDF;
+       z_NSC;
+       z_pro;
+       s_su;
+       s_aa;
+       s_H2;
+       s_ac;
+       s_bu;
+       s_pr;
+       s_IN;
+       s_IC;
+       s_CH4;
+       x_su;
+       x_aa;
+       x_H2;];
+
 tspan = [0.0 1.0];
-[t, S] = ode45(odevector, tspan, y0)
+dsolve('DLHS=RHS')
