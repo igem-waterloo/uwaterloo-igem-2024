@@ -35,6 +35,7 @@ xgboost_model = joblib.load('xgb_model.pkl')
 svr_model = joblib.load('svr_model.pkl')
 elastic_model = joblib.load('elastic_model.pkl')
 knn_model = joblib.load('knn_model.pkl') 
+random_forest_model = joblib.load('random_forest_model.pkl')
 mlp_model = MethaneModel(len(data_columns))
 mlp_model.load_state_dict(torch.load('methane_model.pth'))
 
@@ -78,7 +79,7 @@ predicted_herd = herd_model.predict(feed_data)
 # st.write(f'This cow belongs to Herd {predicted_herd[0]}')
 
 model_option = st.selectbox('Choose a model for prediction', 
-                            ('MLP', 'LightGBM', 'XGBoost', 'SVR', 'Elastic Net', 'KNN'))
+                            ('MLP', 'LightGBM', 'XGBoost', 'SVR', 'Elastic Net', 'KNN', 'Random Forest'))
 
 st.header('Input Microbiome Data')
 microbiome_data = []
@@ -134,6 +135,8 @@ with col[0]:
             predicted_methane = [mlp_model(input_tensor).item()]
         elif model_option == 'KNN':
             predicted_methane = knn_model.predict(full_input_data)
+        elif model_option == 'Random Forest':
+            predicted_methane = random_forest_model.predict(full_input_data)
             
         st.write(f'Predicted Methane Emission: {predicted_methane[0]:.2f} g/d')
 
@@ -145,6 +148,7 @@ with col[1]:
         predicted_methane_svr = svr_model.predict(full_input_data)
         predicted_methane_elastic = elastic_model.predict(full_input_data)
         predicted_methane_knn = knn_model.predict(full_input_data)
+        predicted_methane_rf = random_forest_model.predict(full_input_data)
         
         st.write(f'Predicted Methane Emission (MLP): {predicted_methane_mlp:.2f} g/d')
         st.write(f'Predicted Methane Emission (LightGBM): {predicted_methane_lightgbm[0]:.2f} g/d')
@@ -152,6 +156,7 @@ with col[1]:
         st.write(f'Predicted Methane Emission (SVR): {predicted_methane_svr[0]:.2f} g/d')
         st.write(f'Predicted Methane Emission (Elastic Net): {predicted_methane_elastic[0]:.2f} g/d')
         st.write(f'Predicted Methane Emission (KNN): {predicted_methane_knn[0]:.2f} g/d')
+        st.write(f'Predicted Methane Emission (Random Forest): {predicted_methane_rf[0]:.2f} g/d')
 
 
 # To run the app, use the command: streamlit run your_app.py
