@@ -63,8 +63,8 @@ methane_data = methane_data[DATA_COLUMNS]
 preprocess = StandardScaler()
 preprocess.fit(methane_data)
 
-st.title('Methane Emission Prediction for Cows 🐮')
-st.header('Input Cow Feed Information') 
+st.title('Methane Emission Prediction for Cattle 🐮')
+st.header('Input Cattle Feed Information') 
 with st.expander("Enter numbers", expanded=True):
     dm = st.number_input('DM (kg/d)', min_value=0.0, max_value=100.0, value=20.0, step=0.1)
     om = st.number_input('OM (kg/d)', min_value=0.0, max_value=100.0, value=15.0, step=0.1)
@@ -154,4 +154,4 @@ with col[1]:
         st.write(f'Predicted Methane Emission (KNN): {predicted_methane_knn[0]:.2f} g/d')
 
 
-# To run the app, use the command: streamlit run your_app.py
+# To run the app, use the command: streamlit run main.py
