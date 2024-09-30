@@ -10,17 +10,17 @@ wallace_metadata.csv: contains feed component data, herd data, and rumen microbi
 
 ### Scripts
  
-main.py: [enter short description here]
-utils.py: [enter short description here]
-...
+main.py: File for the main interface, where you can input cattle parameters and get methane emission prediction results from the desired model
 
 ### Assets
-...
+We've included screenshots of the Mean Squared Error (MSE), Mean Absolute Error (MAE), and R^2 values from some of our best-performing models. We also have plots of actual vs. predicted methane emissions from select models.
 
 ## Setup
+To run the interface:
 1. Make sure you are in the right directory by running 
    `cd models/outside-cattle/scripts`
 2. Install the required packages by running 
    `pip install -r requirements.txt`
 3. Run the interface by running 
    `streamlit run main.py`
+   
