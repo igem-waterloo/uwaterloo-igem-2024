@@ -310,7 +310,6 @@ BESNADHM = 0.5 * UTCM;            %Growth
 ode_system = @(t, y) [
   
   %y(1) corresponds to CW
-  %dCW/dt = INCW - CWGLU - OUTCW
   INCW_interp(t) - KCW * GluPer * y(1) - KOUTCW * y(1);
 
 ];
@@ -321,12 +320,3 @@ initial_conditions = [CW];
 
 %Extract solutions
 CW_sol = y_sol(:, 1);
-
-%plot(t_sol, CW_sol, 'r', 'DisplayName', 'CW_percentage');
-
-hold on;
-%plot(t_sol, LAC_sol, 'c', 'DisplayName', 'LAC');
-xlabel('Time (min)');
-ylabel('Concentration (mol/L)');
-%legend show;
-title('Compartment Concentrations over Time');

@@ -47,9 +47,6 @@ ManPer = adjustedNumbers(6);
 [t_sol,y_sol]=odeModel(GluPer, resolution);
 CW_sol = y_sol/y_sol(2);
 T_sol = t_sol;
-%disp(size(CW_sol'));
-%disp(size(AA))
-%plot(t_sol,CW_sol);
 for q = 1:resolution
 AA(i,q)=CW_sol(q);
 BB(i,q)=y_sol(q);
