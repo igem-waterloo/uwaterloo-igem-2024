@@ -1,6 +1,8 @@
 clear all;
+clc;
+close all;
 
-numsimulations = 100;
+numsimulations = 1000;
 resolution = 1000;
 AA = [zeros([numsimulations resolution])];
 BB = [zeros([numsimulations resolution])];
@@ -60,7 +62,7 @@ avg = mean(AA);
 
 figure(1)
 hold on
-title('Monte Carlo Concentration')
+title('Cell Wall Concentration')
 for l=1:size(BB,1)
 plot(T_sol, BB(l,:), 'r', 'DisplayName', 'CW_concentration')
 end
@@ -68,7 +70,7 @@ hold off;
 
 figure(2)
 hold on
-title('Monte Carlo Percentage')
+title('Remaining Undegraded Cell Wall')
 for p=1:size(AA,1)
 plot(T_sol, AA(p,:), 'b')
 end
@@ -77,7 +79,7 @@ xlabel('Time (min)')
 hold off;
 
 figure(3)
-title('Average')
+title('Average Undegraded C. vulgaris Over Time')
 hold on;
 plot(T_sol, avg, 'g')
 ylabel('% Undegraded Cell Wall')
@@ -104,4 +106,9 @@ end
 plot(T_sol, 1-avg, 'g', 'LineWidth', 1.5)
 ylabel('% Degraded C. vulgaris')
 xlabel('Time (min)')
+xlim([4 inf])
+h = zeros(2, 1);
+h(1) = plot(NaN,NaN,'b');
+h(2) = plot(NaN,NaN,'g');
+legend(h, 'Monte Carlo Runs', 'Average');
 hold off;
