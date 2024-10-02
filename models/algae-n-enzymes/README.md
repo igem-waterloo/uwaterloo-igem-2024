@@ -5,6 +5,8 @@ For the Algae n' Enzymes project, we created a model to estimate the rate at whi
 A thermodynamics-based approach was used, based on [this paper](https://animres.edpsciences.org/articles/animres/abs/2006/05/z205012/z205012.html), assuming that the majority of the cell wall is composed of cellulose. Due to the limited and contradictory information regarding C. vulgaris cell wall concentrations in literature, a Monte Carlo algorithm was implemented for the glucose percentage of the cell wall. 
 
 ### Data
+Nummerical values used in the model came from [this paper](https://animres.edpsciences.org/articles/animres/abs/2006/05/z205012/z205012.html) as noted above. Additional research into the digestion length in the rumen and glucose concentration in C. Vulgaris cell walls was performed and included in the model, and sources can be found [here](https://nydairyadmin.cce.cornell.edu/pdf/submission/pdf205_pdf.pdf) and [here]( https://www.sciencedirect.com/science/article/pii/S2211926419307404) respectively. 
+
 
 ### Scripts
 
