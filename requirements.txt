@@ -12,6 +12,10 @@ cobra # for FBA
 
 # OUTSIDE CATTLE
 scikit-learn
+torch
+xgboost
+lightgbm
+streamlit
 
 # METHANOGENESIS
 tellurium # for reaction kinetics modelling
